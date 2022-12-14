@@ -1,0 +1,6 @@
+apiVersion: plugin.entando.org/v1alpha1
+kind: EntandoPluginV2
+metadata:
+  name: plugin-sample
+spec:
+  image: nginx:latest
