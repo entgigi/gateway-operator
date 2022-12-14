@@ -25,9 +25,9 @@ rules:
   - update
   - watch
 - apiGroups:
-  - plugin.entando.org
+  - gateway.entando.org
   resources:
-  - entandoingressv2s
+  - entandogatewaysv2s
   verbs:
   - create
   - delete
@@ -37,41 +37,15 @@ rules:
   - update
   - watch
 - apiGroups:
-  - plugin.entando.org
+  - gateway.entando.org
   resources:
-  - entandoingressv2s/finalizers
+  - entandogatewaysv2s/finalizers
   verbs:
   - update
 - apiGroups:
-  - plugin.entando.org
+  - gateway.entando.org
   resources:
-  - entandoingressv2s/status
-  verbs:
-  - get
-  - patch
-  - update
-- apiGroups:
-  - plugin.entando.org
-  resources:
-  - entandopluginv2s
-  verbs:
-  - create
-  - delete
-  - get
-  - list
-  - patch
-  - update
-  - watch
-- apiGroups:
-  - plugin.entando.org
-  resources:
-  - entandopluginv2s/finalizers
-  verbs:
-  - update
-- apiGroups:
-  - plugin.entando.org
-  resources:
-  - entandopluginv2s/status
+  - entandogatewaysv2s/status
   verbs:
   - get
   - patch
