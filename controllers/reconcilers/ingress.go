@@ -4,7 +4,6 @@ import (
 	"context"
 
 	"github.com/entgigi/gateway-operator.git/api/v1alpha1"
-	"github.com/entgigi/gateway-operator.git/utility"
 
 	netv1 "k8s.io/api/networking/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
@@ -17,7 +16,7 @@ import (
 )
 
 func (d *IngressManager) isIngressUpgrade(ctx context.Context, cr *v1alpha1.EntandoGatewayV2, ingress *netv1.Ingress) (error, bool) {
-	err := d.Base.Client.Get(ctx, types.NamespacedName{Name: makeDeploymentName(cr), Namespace: cr.GetNamespace()}, ingress)
+	err := d.Base.Client.Get(ctx, types.NamespacedName{Name: cr.Spec.IngressName, Namespace: cr.GetNamespace()}, ingress)
 	if errors.IsNotFound(err) {
 		return nil, false
 	}
@@ -57,8 +56,29 @@ func (d *IngressManager) buildIngress(cr *v1alpha1.EntandoGatewayV2, scheme *run
 	return ingress
 }
 
-func makeDeploymentName(cr *v1alpha1.EntandoGatewayV2) string {
-	return "plugin-" + utility.TruncateString(cr.GetName(), 200) + "-deployment"
+func (d *IngressManager) updateIngressSpec(ingress *netv1.Ingress, baseIngress *netv1.Ingress, cr *v1alpha1.EntandoGatewayV2) {
+	found := false
+	for _, rule := range ingress.Spec.Rules {
+		if rule.Host == cr.Spec.IngressHost {
+			found = true
+			pathFound := false
+			for _, path := range rule.HTTP.Paths {
+				if path.Path == cr.Spec.IngressPath {
+					pathFound = true
+					path.Backend = baseIngress.Spec.Rules[0].IngressRuleValue.HTTP.Paths[0].Backend
+					break
+				}
+			}
+			if !pathFound {
+				rule.HTTP.Paths = append(rule.HTTP.Paths, baseIngress.Spec.Rules[0].IngressRuleValue.HTTP.Paths[0])
+			}
+			break
+		}
+	}
+
+	if !found {
+		ingress.Spec.Rules = append(ingress.Spec.Rules, baseIngress.Spec.Rules[0])
+	}
 }
 
 func (d *IngressManager) ApplyKubeIngress(ctx context.Context, cr *v1alpha1.EntandoGatewayV2, scheme *runtime.Scheme) error {
@@ -72,7 +92,7 @@ func (d *IngressManager) ApplyKubeIngress(ctx context.Context, cr *v1alpha1.Enta
 
 	var applyError error
 	if isUpgrade {
-		ingress.Spec = baseIngress.Spec
+		d.updateIngressSpec(ingress, baseIngress, cr)
 		applyError = d.Base.Client.Update(ctx, ingress)
 
 	} else {
