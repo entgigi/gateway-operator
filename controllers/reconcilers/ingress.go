@@ -7,6 +7,7 @@ import (
 	"github.com/entgigi/gateway-operator.git/utility"
 
 	netv1 "k8s.io/api/networking/v1"
+	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime"
 
 	"k8s.io/apimachinery/pkg/api/errors"
@@ -24,20 +25,36 @@ func (d *IngressManager) isIngressUpgrade(ctx context.Context, cr *v1alpha1.Enta
 }
 
 func (d *IngressManager) buildIngress(cr *v1alpha1.EntandoGatewayV2, scheme *runtime.Scheme) *netv1.Ingress {
-	/*
-		replicas := cr.Spec.Replicas
-		deploymentName := makeDeploymentName(cr)
-		containerName := makeContainerName(cr)
-		labels := map[string]string{labelKey: containerName}
-		port := int32(cr.Spec.Port)
-	*/
-	ingress := &netv1.Ingress{} // set owner
+	pp := netv1.PathTypePrefix
+	ingress := &netv1.Ingress{
+		ObjectMeta: metav1.ObjectMeta{
+			Name:      cr.Spec.IngressName,
+			Namespace: cr.GetNamespace(),
+		},
+		Spec: netv1.IngressSpec{
+			Rules: []netv1.IngressRule{{
+				Host: cr.Spec.IngressHost,
+				IngressRuleValue: netv1.IngressRuleValue{
+					HTTP: &netv1.HTTPIngressRuleValue{
+						Paths: []netv1.HTTPIngressPath{{
+							Path:     cr.Spec.IngressPath,
+							PathType: &pp,
+							Backend: netv1.IngressBackend{
+								Service: &netv1.IngressServiceBackend{
+									Name: cr.Spec.IngressService,
+									Port: netv1.ServiceBackendPort{
+										Name: cr.Spec.IngressPort,
+									},
+								},
+							},
+						}},
+					},
+				},
+			}},
+		},
+	} // set owner
 	ctrl.SetControllerReference(cr, ingress, scheme)
 	return ingress
-}
-
-func makeContainerName(cr *v1alpha1.EntandoGatewayV2) string {
-	return "plugin-" + utility.TruncateString(cr.GetName(), 200) + "-container"
 }
 
 func makeDeploymentName(cr *v1alpha1.EntandoGatewayV2) string {

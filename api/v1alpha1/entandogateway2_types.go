@@ -23,6 +23,7 @@ import (
 // EntandoGatewayV2Spec defines the desired state of EntandoGatewayV2
 type EntandoGatewayV2Spec struct {
 	IngressName    string `json:"ingressName,omitempty"`
+	IngressHost    string `json:"ingressHost,omitempty"`
 	IngressPath    string `json:"ingressPath,omitempty"`
 	IngressPort    string `json:"ingressPort,omitempty"`
 	IngressService string `json:"ingressService,omitempty"`
