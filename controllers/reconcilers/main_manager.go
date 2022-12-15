@@ -63,13 +63,13 @@ func (r *ReconcileManager) MainReconcile(ctx context.Context, req ctrl.Request, 
 
 	if !ready {
 		if ready, err = ingressManager.CheckIngress(ctx, cr); err != nil {
-			log.Info("error CheckDeploy reschedule reconcile", "error", err)
+			log.Info("error CheckIngress reschedule reconcile", "error", err)
 			r.Condition.SetConditionGatewayReadyFalse(ctx, cr)
 			return ctrl.Result{}, err
 		}
 		if !ready {
-			log.Info("Deploy not ready reschedule operator", "seconds", 10)
-			r.Recorder.Eventf(cr, "Warning", "NotReady", fmt.Sprintf("Plugin deployment not ready %s/%s", req.Namespace, req.Name))
+			log.Info("Ingress not ready reschedule operator", "seconds", 10)
+			r.Recorder.Eventf(cr, "Warning", "NotReady", fmt.Sprintf("Gateway ingress not ready %s/%s", req.Namespace, req.Name))
 			r.Condition.SetConditionGatewayReadyFalse(ctx, cr)
 			return ctrl.Result{Requeue: true, RequeueAfter: 10 * time.Second}, nil
 		}

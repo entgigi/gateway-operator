@@ -5,9 +5,9 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.9.2
   creationTimestamp: null
-  name: entandogatewayv2s.plugin.entando.org
+  name: entandogatewayv2s.gateway.entando.org
 spec:
-  group: plugin.entando.org
+  group: gateway.entando.org
   names:
     kind: EntandoGatewayV2
     listKind: EntandoGatewayV2List

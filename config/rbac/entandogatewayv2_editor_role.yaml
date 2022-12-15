@@ -1,13 +1,13 @@
-# permissions for end users to edit entandoingressv2s.
+# permissions for end users to edit entandogatewayv2s.
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: entandoingressv2-editor-role
+  name: entandogatewayv2-editor-role
 rules:
 - apiGroups:
-  - plugin.entando.org
+  - gateway.entando.org
   resources:
-  - entandoingressv2s
+  - entandogatewayv2s
   verbs:
   - create
   - delete
@@ -17,8 +17,8 @@ rules:
   - update
   - watch
 - apiGroups:
-  - plugin.entando.org
+  - gateway.entando.org
   resources:
-  - entandoingressv2s/status
+  - entandogatewayv2s/status
   verbs:
   - get

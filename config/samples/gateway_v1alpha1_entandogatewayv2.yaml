@@ -1,0 +1,6 @@
+apiVersion: gateway.entando.org/v1alpha1
+kind: EntandoGatewayV2
+metadata:
+  name: entandogatewayv2-sample
+spec:
+  # TODO(user): Add fields here
