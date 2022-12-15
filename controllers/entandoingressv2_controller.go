@@ -44,9 +44,9 @@ type EntandoGatewayV2Reconciler struct {
 	Recorder record.EventRecorder
 }
 
-//+kubebuilder:rbac:groups=gateway.entando.org,resources=entandogatewaysv2s,verbs=get;list;watch;create;update;patch;delete
-//+kubebuilder:rbac:groups=gateway.entando.org,resources=entandogatewaysv2s/status,verbs=get;update;patch
-//+kubebuilder:rbac:groups=gateway.entando.org,resources=entandogatewaysv2s/finalizers,verbs=update
+//+kubebuilder:rbac:groups=gateway.entando.org,resources=entandogatewayv2s,verbs=get;list;watch;create;update;patch;delete
+//+kubebuilder:rbac:groups=gateway.entando.org,resources=entandogatewayv2s/status,verbs=get;update;patch
+//+kubebuilder:rbac:groups=gateway.entando.org,resources=entandogatewayv2s/finalizers,verbs=update
 // Annotation for generating RBAC role for writing Events
 //+kubebuilder:rbac:groups="*",resources=events,verbs=create;patch
 //+kubebuilder:rbac:groups=apps,resources=deployments,verbs=get;list;watch;create;update;patch;delete

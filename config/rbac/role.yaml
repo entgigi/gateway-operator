@@ -27,7 +27,7 @@ rules:
 - apiGroups:
   - gateway.entando.org
   resources:
-  - entandogatewaysv2s
+  - entandogatewayv2s
   verbs:
   - create
   - delete
@@ -39,13 +39,13 @@ rules:
 - apiGroups:
   - gateway.entando.org
   resources:
-  - entandogatewaysv2s/finalizers
+  - entandogatewayv2s/finalizers
   verbs:
   - update
 - apiGroups:
   - gateway.entando.org
   resources:
-  - entandogatewaysv2s/status
+  - entandogatewayv2s/status
   verbs:
   - get
   - patch
