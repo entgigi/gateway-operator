@@ -82,3 +82,4 @@ require (
 	sigs.k8s.io/yaml v1.3.0 // indirect
 )
 
+replace github.com/entgigi/gateway-operator.git => github.com/entgigi/gateway-operator v0.0.0
