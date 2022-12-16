@@ -3,7 +3,7 @@ package reconcilers
 import (
 	"context"
 
-	"github.com/entgigi/gateway-operator.git/api/v1alpha1"
+	"github.com/entgigi/gateway-operator/api/v1alpha1"
 
 	netv1 "k8s.io/api/networking/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"

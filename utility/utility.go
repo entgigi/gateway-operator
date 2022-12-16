@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/entgigi/gateway-operator.git/common"
+	"github.com/entgigi/gateway-operator/common"
 )
 
 // GetWatchNamespace returns the Namespace the operator should be watching for changes

@@ -1,4 +1,4 @@
-module github.com/entgigi/gateway-operator.git
+module github.com/entgigi/gateway-operator
 
 go 1.18
 

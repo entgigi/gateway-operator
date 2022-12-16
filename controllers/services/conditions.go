@@ -3,9 +3,9 @@ package services
 import (
 	"context"
 
-	"github.com/entgigi/gateway-operator.git/api/v1alpha1"
-	"github.com/entgigi/gateway-operator.git/common"
-	"github.com/entgigi/gateway-operator.git/utility"
+	"github.com/entgigi/gateway-operator/api/v1alpha1"
+	"github.com/entgigi/gateway-operator/common"
+	"github.com/entgigi/gateway-operator/utility"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"sigs.k8s.io/controller-runtime/pkg/log"
 )

@@ -26,9 +26,9 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/controller/controllerutil"
 	"sigs.k8s.io/controller-runtime/pkg/predicate"
 
-	v1alpha1 "github.com/entgigi/gateway-operator.git/api/v1alpha1"
-	"github.com/entgigi/gateway-operator.git/common"
-	"github.com/entgigi/gateway-operator.git/controllers/reconcilers"
+	v1alpha1 "github.com/entgigi/gateway-operator/api/v1alpha1"
+	"github.com/entgigi/gateway-operator/common"
+	"github.com/entgigi/gateway-operator/controllers/reconcilers"
 	"github.com/go-logr/logr"
 )
 

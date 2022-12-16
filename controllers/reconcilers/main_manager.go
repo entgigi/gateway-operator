@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/entgigi/gateway-operator.git/api/v1alpha1"
-	"github.com/entgigi/gateway-operator.git/common"
-	"github.com/entgigi/gateway-operator.git/controllers/services"
+	"github.com/entgigi/gateway-operator/api/v1alpha1"
+	"github.com/entgigi/gateway-operator/common"
+	"github.com/entgigi/gateway-operator/controllers/services"
 	"github.com/go-logr/logr"
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/client-go/tools/record"

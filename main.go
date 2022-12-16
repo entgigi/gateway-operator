@@ -30,9 +30,9 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/healthz"
 	"sigs.k8s.io/controller-runtime/pkg/log/zap"
 
-	gatewayv1alpha1 "github.com/entgigi/gateway-operator.git/api/v1alpha1"
-	"github.com/entgigi/gateway-operator.git/controllers"
-	"github.com/entgigi/gateway-operator.git/utility"
+	gatewayv1alpha1 "github.com/entgigi/gateway-operator/api/v1alpha1"
+	"github.com/entgigi/gateway-operator/controllers"
+	"github.com/entgigi/gateway-operator/utility"
 	//+kubebuilder:scaffold:imports
 )
 
