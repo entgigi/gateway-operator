@@ -55,7 +55,7 @@ func (r *ReconcileManager) MainReconcile(ctx context.Context, req ctrl.Request, 
 			return ctrl.Result{}, err
 		}
 	}
-	r.Recorder.Eventf(cr, "Normal", "Updated", fmt.Sprintf("Updated deployment %s/%s", req.Namespace, req.Name))
+	r.Recorder.Eventf(cr, "Normal", "Updated", fmt.Sprintf("Updated ingress %s/%s", req.Namespace, req.Name))
 
 	// deploy ready
 	var err error

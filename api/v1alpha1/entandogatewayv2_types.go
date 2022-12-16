@@ -60,6 +60,14 @@ type EntandoGatewayV2List struct {
 	Items           []EntandoGatewayV2 `json:"items"`
 }
 
+func (p *EntandoGatewayV2) GetConditions() []metav1.Condition {
+	return p.Status.Conditions
+}
+
+func (p *EntandoGatewayV2) SetConditions(conditions []metav1.Condition) {
+	p.Status.Conditions = conditions
+}
+
 func init() {
 	SchemeBuilder.Register(&EntandoGatewayV2{}, &EntandoGatewayV2List{})
 }

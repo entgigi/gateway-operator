@@ -49,12 +49,13 @@ type EntandoGatewayV2Reconciler struct {
 //+kubebuilder:rbac:groups=gateway.entando.org,resources=entandogatewayv2s/finalizers,verbs=update
 // Annotation for generating RBAC role for writing Events
 //+kubebuilder:rbac:groups="*",resources=events,verbs=create;patch
-//+kubebuilder:rbac:groups=apps,resources=deployments,verbs=get;list;watch;create;update;patch;delete
+//+kubebuilder:rbac:groups=networking.k8s.io,resources=ingresses,verbs=get;list;watch;create;update;patch;delete
 
-func NewEntandoGatewayV2Reconciler(client client.Client, log logr.Logger, scheme *runtime.Scheme) *EntandoGatewayV2Reconciler {
+func NewEntandoGatewayV2Reconciler(client client.Client, log logr.Logger, scheme *runtime.Scheme, recorder record.EventRecorder) *EntandoGatewayV2Reconciler {
 	return &EntandoGatewayV2Reconciler{
-		Base:   common.BaseK8sStructure{Client: client, Log: log},
-		Scheme: scheme,
+		Base:     common.BaseK8sStructure{Client: client, Log: log},
+		Scheme:   scheme,
+		Recorder: recorder,
 	}
 }
 

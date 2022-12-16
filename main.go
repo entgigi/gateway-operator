@@ -91,7 +91,8 @@ func main() {
 		os.Exit(1)
 	}
 
-	if err = controllers.NewEntandoGatewayV2Reconciler(mgr.GetClient(), ctrl.Log, mgr.GetScheme()).SetupWithManager(mgr); err != nil {
+	if err = controllers.NewEntandoGatewayV2Reconciler(mgr.GetClient(), ctrl.Log, mgr.GetScheme(), mgr.GetEventRecorderFor("entandogateway-controller")).
+		SetupWithManager(mgr); err != nil {
 		setupLog.Error(err, "unable to create controller", "controller", "EntandoGatewayV2")
 		os.Exit(1)
 	}
